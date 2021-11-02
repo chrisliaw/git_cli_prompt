@@ -2,3 +2,5 @@
 git_cli_prompt:
 - :version: 0.1.2
   :timestamp: 1635828173.1234875
+- :version: 0.2.1
+  :timestamp: 1635828282.1326017
