@@ -3,6 +3,8 @@ module GitCliPrompt
   module Push
     include TR::CondUtils
     include CliPrompt
+
+    class PushError < StandardError; end
     
     def push(root, &block)
     

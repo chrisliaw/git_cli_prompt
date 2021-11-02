@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    git_cli_prompt (0.1.0)
+    git_cli_prompt (0.2.0)
       tlogger
       toolrack
       tty-prompt
@@ -10,12 +10,13 @@ GEM
   remote: https://rubygems.org/
   specs:
     base58 (0.2.3)
-    devops_helper (0.5.0)
+    devops_assist (0.1.1)
       git_cli
+      git_cli_prompt
       gvcs
       tlogger
       toolrack
-      tty-prompt (= 0.22.0)
+      tty-prompt
     diff-lcs (1.4.4)
     git_cli (0.9.0)
       gvcs
@@ -60,7 +61,7 @@ PLATFORMS
   x86_64-linux
 
 DEPENDENCIES
-  devops_helper
+  devops_assist
   git_cli_prompt!
   rake (~> 13.0)
   rspec (~> 3.0)

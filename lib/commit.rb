@@ -28,13 +28,16 @@ module GitCliPrompt
         pending = false
         pending = true if not_empty?(modDir) or not_empty?(modFiles) or not_empty?(newDir) or not_empty?(newFiles) or not_empty?(delDir) or not_empty?(delFiles)
 
+        staged = false
+        staged = true if not_empty?(stDir) or not_empty?(stFiles)
+
         if not_empty?(stDir) or not_empty?(stFiles)
           say "  Item(s) already staged for commit: \n"
           stDir.each do |md|
-            say "  #{md.path}"
+            say "    #{md.path}"
           end
           stFiles.each do |md|
-            say "  #{md.path}"
+            say "    #{md.path}"
           end
         end
 
@@ -53,7 +56,7 @@ module GitCliPrompt
 
         puts
 
-        if not pending
+        if not (pending and staged)
           pmt.say("\n  Workspace is clean. No changes or unstage files or directory is found.\n", color: :green) 
           "Workspace is clean. No changes or unstage files or directory is found"
 

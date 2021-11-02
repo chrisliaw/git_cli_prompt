@@ -5,6 +5,6 @@ require "rspec/core/rake_task"
 
 RSpec::Core::RakeTask.new(:spec)
 
-require 'devops_helper'
+require 'devops_assist'
 
 task default: :spec
