@@ -56,7 +56,7 @@ module GitCliPrompt
 
         puts
 
-        if not (pending and staged)
+        if not pending and not staged
           pmt.say("\n  Workspace is clean. No changes or unstage files or directory is found.\n", color: :green) 
           "Workspace is clean. No changes or unstage files or directory is found"
 

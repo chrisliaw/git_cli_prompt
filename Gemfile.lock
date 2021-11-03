@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    git_cli_prompt (0.2.0)
+    git_cli_prompt (0.2.1)
       tlogger
       toolrack
       tty-prompt
