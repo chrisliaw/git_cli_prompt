@@ -1,7 +1,10 @@
 # frozen_string_literal: true
 
-require 'tlogger'
+#require 'tlogger'
+require 'teLogger'
 require 'toolrack'
+
+include TeLogger
 
 require 'gvcs'
 require 'git_cli'

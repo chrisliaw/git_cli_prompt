@@ -30,7 +30,8 @@ Gem::Specification.new do |spec|
   spec.executables   = spec.files.grep(%r{\Aexe/}) { |f| File.basename(f) }
   spec.require_paths = ["lib"]
 
-  spec.add_dependency "tlogger"
+  #spec.add_dependency "tlogger"
+  spec.add_dependency "teLogger"
   spec.add_dependency "toolrack"
 
   spec.add_dependency "tty-prompt"

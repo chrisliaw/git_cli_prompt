@@ -1,8 +1,8 @@
 PATH
   remote: .
   specs:
-    git_cli_prompt (0.2.1)
-      tlogger
+    git_cli_prompt (0.2.2)
+      teLogger
       toolrack
       tty-prompt
 
@@ -41,6 +41,7 @@ GEM
       diff-lcs (>= 1.2.0, < 2.0)
       rspec-support (~> 3.10.0)
     rspec-support (3.10.2)
+    teLogger (0.2.0)
     tlogger (0.26.1)
     toolrack (0.16.0)
       base58
