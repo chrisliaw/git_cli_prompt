@@ -1,5 +1,6 @@
 
-require 'tlogger'
+require 'teLogger'
+include TeLogger
 
 module GitCliPrompt
   module Logger
