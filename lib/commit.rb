@@ -110,8 +110,13 @@ module GitCliPrompt
         end
 
 
-      rescue TTY::Reader::InputInterrupt
+      rescue TTY::Reader::InputInterrupt => ex
         ok "\n\n  Aborted"
+
+        if block
+          th = block.call(:raise_to_parent)
+          raise ex if is_bool?(th)
+        end
 
       #rescue UserChangedMind
       #  ok "\n  Noted. Please retry the process again\n"
@@ -184,7 +189,7 @@ module GitCliPrompt
         defMsg = block.call(:default_commit_message)
       end
 
-      msg = pmt.ask("  Commit Message :", required: true) do |m|
+      msg = pmt.ask("\n  Commit Message : ", required: true) do |m|
         m.default = defMsg if not_empty?(defMsg)
       end
 
