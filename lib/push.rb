@@ -27,22 +27,42 @@ module GitCliPrompt
           conf = ws.remote_config
         end
 
+        if conf.keys.length > 1
+          selRemote = pmt.select(" There are more than one remote repository found. Please select which is intended to be push to : ") do |m|
+            conf.each do |k,v|
+              m.choice "#{k} [#{v["push"]}]", [k, v["push"]]
+            end
+          end
+
+        else
+          selRemote = [conf.keys.first,conf[conf.keys.first]["push"]]
+        end
+
         branch = block.call(:push_to_branch) if block
         branch = ws.current_branch if is_empty?(branch)
 
-        if conf.keys.length == 1
-          # direct push
-          name = conf.keys.first
-          url = conf.values.first["push"]
-          if confirm_push(name, url)
-            ws.push_changes_with_tags(name, branch)
-            block.call(:push_info, { name: name }) if block
-          else
-            raise UserAborted
-          end
+        name = selRemote[0]
+        url = selRemote[1]
+        if confirm_push(name, url)
+          ws.push_changes_with_tags(name, branch)
+          block.call(:push_info, { name: name, url: url }) if block
         else
-          raise UserChangedMind
+          pmt.say " Push is skipped ", color: :yellow
         end
+
+        #if conf.keys.length == 1
+        #  # direct push
+        #  name = conf.keys.first
+        #  url = conf.values.first["push"]
+        #  if confirm_push(name, url)
+        #    ws.push_changes_with_tags(name, branch)
+        #    block.call(:push_info, { name: name }) if block
+        #  else
+        #    raise UserAborted
+        #  end
+        #else
+        #  raise UserChangedMind
+        #end
 
       rescue TTY::Reader::InputInterrupt
       end
