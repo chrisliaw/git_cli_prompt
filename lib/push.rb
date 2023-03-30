@@ -44,8 +44,15 @@ module GitCliPrompt
         name = selRemote[0]
         url = selRemote[1]
         if confirm_push(name, url)
-          ws.push_changes_with_tags(name, branch)
-          block.call(:push_info, { name: name, url: url }) if block
+          st, out = ws.push_changes_with_tags(name, branch)
+          if st
+            pmt.puts " "
+            pmt.say out
+            pmt.puts " "
+            block.call(:push_info, { name: name, url: url }) if block
+          else
+            pmt.say "\n Error while pushing changes with tag. Error was : #{out}", color: :red
+          end
         else
           pmt.say " Push is skipped ", color: :yellow
         end
